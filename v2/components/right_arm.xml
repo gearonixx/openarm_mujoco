@@ -99,7 +99,7 @@ limitations under the License.
                 <body name="openarm_right_ee_inner_finger" pos="-0.00143 0.018 -0.068">
                   <!-- Inner finger mass: about 126 g. The inertial position locates its center of mass. -->
                   <inertial pos="-0.0124991 0.00176593 -0.0241663" quat="0.982638 -0.0922084 -0.15927 0.0235197" mass="0.125979" diaginertia="3.8543e-05 3.6883e-05 1.43942e-05" />
-                  <joint name="openarm_right_finger_joint1" pos="0 0 0" axis="-1 0 0" ref="0.65" range="-0.7854 0.02" actuatorfrcrange="-7 7" class="motor_finger" />
+                  <joint name="openarm_right_finger_joint1" pos="0 0 0" axis="-1 0 0" range="-0.7854 0" actuatorfrcrange="-7 7" class="motor_finger" />
                   <geom name="finger_inner_right_00" type="mesh" mesh="finger_inner_right_00" class="visual" material="finger_inner_00_mat" />
                   <geom name="finger_inner_right_01" type="mesh" mesh="finger_inner_right_01" class="visual" material="finger_inner_01_mat" />
                   <geom name="finger_inner_right_02" type="mesh" mesh="finger_inner_right_02" class="visual" material="finger_inner_02_mat" />
@@ -111,7 +111,7 @@ limitations under the License.
                 </body>
                 <body name="openarm_right_ee_outer_finger" pos="-0.00143 -0.018 -0.068">
                   <inertial pos="-0.012796 -0.0020183 -0.026792" quat="0.982097 0.0906989 -0.165079 -0.00294117" mass="0.11372" diaginertia="3.70662e-05 3.60159e-05 1.33599e-05" />
-                  <joint name="openarm_right_finger_joint2" pos="0 0 0" axis="1 0 0" ref="0.65" range="-0.7854 0.02" actuatorfrcrange="-7 7" class="motor_finger" />
+                  <joint name="openarm_right_finger_joint2" pos="0 0 0" axis="1 0 0" range="-0.7854 0" actuatorfrcrange="-7 7" class="motor_finger" />
                   <geom name="finger_outer_right_00" type="mesh" mesh="finger_outer_right_00" class="visual" material="finger_outer_00_mat" />
                   <geom name="finger_outer_right_01" type="mesh" mesh="finger_outer_right_01" class="visual" material="finger_outer_01_mat" />
                   <geom name="finger_outer_right_02" type="mesh" mesh="finger_outer_right_02" class="visual" material="finger_outer_02_mat" />

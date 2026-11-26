@@ -118,15 +118,14 @@ for either arm. (The turnable valve lives in valve_scene.xml.)
   </equality>
 
   <keyframe>
-    <!-- nq = left arm(0-8) + right arm(9-17) + drawer(18) + door(19) = 20.
-         Arms at the shared "home" pose (same as pedestal.xml, with ctrl set so
-         the position actuators hold it); fixtures closed. -->
+    <!-- Each arm has seven joints and two coupled fingers. The last two
+         coordinates are the closed drawer and door. -->
     <key name="home"
-      qpos="0.0 0.0 0.0 1.570796 0.0 0.0 0.0 0.0 0.0
-            0.0 0.0 0.0 1.570796 0.0 0.0 0.0 0.0 0.0
+      qpos="0 -1.57 0 1.7 0 0 0 0.7854 0.7854
+            0.461 0.192 0.0785 1.42 -0.0785 0.785 0 -0.7854 -0.7854
             0 0"
-      ctrl="0 0 0 1.570796 0 0 0 0
-            0 0 0 1.570796 0 0 0 0"/>
+      ctrl="0 -1.57 0 1.7 0 0 0 0.7854
+            0.461 0.192 0.0785 1.42 -0.0785 0.785 0 -0.7854"/>
   </keyframe>
 
 </mujoco>

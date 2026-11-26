@@ -39,8 +39,7 @@ def main() -> int:
     parser.add_argument(
         "--keyframe",
         "-k",
-        default="home",
-        help="Name of keyframe to load as initial state",
+        help="Initial keyframe (default: home if present, otherwise the model's initial pose)",
     )
     parser.add_argument(
         "--static",
@@ -72,14 +71,12 @@ def main() -> int:
     model = mujoco.MjModel.from_xml_path(xml_path)
     data = mujoco.MjData(model)
 
-    if args.keyframe is not None:
-        key_id = mujoco.mj_name2id(model, mujoco.mjtObj.mjOBJ_KEY, args.keyframe)
-        if key_id == -1:
-            print(
-                f"Error: keyframe '{args.keyframe}' not found in model.",
-                file=sys.stderr,
-            )
-            return 2
+    key_name = "home" if args.keyframe is None else args.keyframe
+    key_id = mujoco.mj_name2id(model, mujoco.mjtObj.mjOBJ_KEY, key_name)
+    if key_id == -1 and args.keyframe is not None:
+        print(f"Error: keyframe '{key_name}' not found in model.", file=sys.stderr)
+        return 2
+    if key_id >= 0:
         mujoco.mj_resetDataKeyframe(model, data, key_id)
         # Sync ctrl to qpos so position actuators hold the keyframe pose.
         for i in range(model.nu):
@@ -87,7 +84,7 @@ def main() -> int:
             if jid >= 0:
                 data.ctrl[i] = data.qpos[model.jnt_qposadr[jid]]
 
-        mujoco.mj_forward(model, data)
+    mujoco.mj_forward(model, data)
 
     if not args.walls:
         wall_names = [

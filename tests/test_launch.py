@@ -90,6 +90,16 @@ class LaunchTests(unittest.TestCase):
         np.testing.assert_allclose(data.qpos, [0.3])
         np.testing.assert_allclose(data.ctrl, [1])
 
+    def test_model_without_home_uses_its_initial_pose(self):
+        self.model = mujoco.MjModel.from_xml_string("""
+            <mujoco><compiler angle="radian"/><worldbody><body>
+              <joint ref="0.2"/><geom type="sphere" size="0.1"/>
+            </body></worldbody></mujoco>
+        """)
+        with patch.object(launch.mujoco.viewer, "launch") as managed:
+            self.assertEqual(self.invoke(), 0)
+        np.testing.assert_allclose(managed.call_args.args[1].qpos, [0.2])
+
     def test_missing_keyframe_does_not_launch(self):
         with (
             patch.object(launch.mujoco.viewer, "launch") as managed,
